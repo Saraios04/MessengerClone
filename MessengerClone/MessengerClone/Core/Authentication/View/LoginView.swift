@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LoginView:  View {
     
-    @State var email: String = ""
-    @State var password: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         NavigationStack{
@@ -21,38 +21,32 @@ struct LoginView:  View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
-                    
-                    TextField("Enter your email",text: $email)
-                        .frame(maxWidth: .infinity)
                         .padding()
-                        .background(.gray.opacity(0.1))
-                        .cornerRadius(10)
                     
+                    AuthTextField(title: "Enter your email", textInput: $email, uiKeyBoard: .emailAddress)
+                    AuthSecureField(
+                        title: "Enter your password",
+                        password: $password
+                    )
                     
-                    TextField("Enter your Pasword", text: $password)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.gray.opacity(0.1))
-                        .cornerRadius(10)
-                    
-                }.padding()
+                }
                 
                 HStack {
                     Spacer()
-                    Button("Forgot Passowrd?") {
-                        print("Forgot Password")
-                    }.padding()
-                }.bold()
+                    Button {
+                        print("ForgotPassword Button Pressed")
+                    } label : {
+                        Text("Forgot Password?")
+                            .padding()
+                            .fontWeight(.semibold)
+                    }
+                }
                 
-                Button("Login") {
-                    print("Login Button Clicked")
-                    
-                }.frame(maxWidth: .infinity, minHeight: 30)
-                    .background(.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal, 10)
-                
+                AuthButton(title: "Login",
+                action: {
+                    print("Login Pressed")
+                })
+                              
                 HStack {
                     Rectangle()
                         .frame(height: 1)
@@ -78,22 +72,24 @@ struct LoginView:  View {
                 
                 Spacer()
                 
-                Rectangle()
-                    .frame(height : 1)
-                    .foregroundColor(.gray)
+                Divider()
                 
                 HStack {
                     Text("Don't have an account?")
                         .foregroundColor(.blue)
-                    Button("Sign Up"){
-                      print("Sign Up Pressed")
-                   }
+                    
+                    NavigationLink {
+                        Text("Sign Up")
+                    } label : {
+                        Text("Sign Up")
+                            .fontWeight(.semibold)
+                    }
+                    
                 }.padding()
-                    .fontWeight(.bold)
          }
       }
     }
 }
 #Preview{
-    LoginView(email: "", password: "")
+    LoginView()
 }
