@@ -16,7 +16,7 @@ struct AuthButton: View {
         Button(action: action){
             Text(title)
                 .foregroundColor(Color.white)
-                .modifier(AuthFieldStyle())
+                .modifier(AuthFieldStyle(backgroundColor : Color.blue))
                 
         }
     }

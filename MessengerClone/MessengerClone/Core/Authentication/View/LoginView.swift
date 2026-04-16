@@ -16,19 +16,12 @@ struct LoginView:  View {
         NavigationStack{
             VStack{
                 Spacer()
-                VStack {
-                    Image("spesh_talent_logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .padding()
-                    
+                VStack(spacing: 12) {
+                    AppImageView(imageName: "spesh_talent_logo",imageWidth: 150, imageHeight: 150,contentMode: .fit)
                     AuthTextField(title: "Enter your email", textInput: $email, uiKeyBoard: .emailAddress)
                     AuthSecureField(
                         title: "Enter your password",
-                        password: $password
-                    )
-                    
+                        password: $password)
                 }
                 
                 HStack {
@@ -79,7 +72,8 @@ struct LoginView:  View {
                         .foregroundColor(.blue)
                     
                     NavigationLink {
-                        Text("Sign Up")
+                       RegistrationView()
+                            .navigationBarBackButtonHidden(true)
                     } label : {
                         Text("Sign Up")
                             .fontWeight(.semibold)
