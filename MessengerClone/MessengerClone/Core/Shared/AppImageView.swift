@@ -8,18 +8,34 @@
 import Foundation
 import SwiftUI
 
+enum AppImageSource {
+    case asset(String)
+    case systemImage(String)
+}
+
+
 struct AppImageView : View {
-    let imageName : String
+    
+    var imageSource : AppImageSource
     let imageWidth: CGFloat
     let imageHeight: CGFloat
-    var contentMode : ContentMode 
+    var contentMode : ContentMode = .fit
+    
+    private var image: Image {
+        switch(imageSource) {
+            case .asset(let imageName):
+                Image(imageName)
+            case .systemImage(let systemImageName):
+                Image(systemName: systemImageName)
+        }
+    }
     
     var body: some View {
-        Image(imageName)
+             image
             .resizable()
             .aspectRatio(contentMode: contentMode)
             .frame(width: imageWidth, height: imageHeight)
-            .padding()
+            
         
     }
 }

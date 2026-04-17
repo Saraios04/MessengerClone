@@ -14,33 +14,38 @@ struct RegistrationView: View {
     @State private var fullName: String = ""
     @State private var password: String = ""
     @Environment(\.dismiss) var dismiss
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     var body: some View {
        
-        VStack(spacing: 12){
-            Spacer()
-            AppImageView(imageName: "spesh_talent_logo",imageWidth: 150, imageHeight: 150, contentMode: .fit)
-            AuthTextField(title: "Enter your email",textInput: $email)
-            AuthTextField(title: "Enter your full name", textInput: $fullName)
-            AuthSecureField(title: "Enter your password", password: $password )
-            AuthButton(title: "Sign Up") {
-                print("Sign up")
-            }
-            
-            Spacer()
-            Divider()
-            HStack {
-                Text("Already have an account?")
-                    .foregroundColor(.blue)
-                Button {
-                   dismiss()
-                } label: {
+        var imageFrameSize : CGFloat = horizontalSizeClass == .regular ? 200 : 150
+        
+        ScrollView {
+            VStack(spacing: 12){
+                Spacer()
+                AppImageView(imageSource: .asset("spesh_talent_logo"),imageWidth: imageFrameSize, imageHeight: imageFrameSize, contentMode: .fit)
+                AuthTextField(title: "Enter your email",textInput: $email)
+                AuthTextField(title: "Enter your full name", textInput: $fullName)
+                AuthSecureField(title: "Enter your password", password: $password )
+                AuthButton(title: "Sign Up") {
+                    print("Sign up")
+                }
+                
+                Spacer()
+                Divider()
+                HStack {
+                    Text("Already have an account?")
+                        .foregroundColor(.blue)
+                    Button {
+                        dismiss()
+                    } label: {
                         Text("Sign In")
                             .fontWeight(.semibold)
                     }
                     
-            }.padding()
+                }.padding()
             }
+        }
         }
         
 }

@@ -9,12 +9,15 @@ import Foundation
 import SwiftUI
 
 struct AuthFieldStyle: ViewModifier {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     var backgroundColor : Color = Color.gray.opacity(0.1)
       func body(content: Content) -> some View {
+          
+          var maxHeight : CGFloat = horizontalSizeClass == .regular ? 56 : 40
         content
               .padding()
-              .frame(height: 40)
-              .frame(maxWidth: .infinity)
+              .frame(height: maxHeight)
+              .frame(maxWidth: 400)
               .background(backgroundColor)
               .cornerRadius(10)
               .padding(.horizontal, 15)
