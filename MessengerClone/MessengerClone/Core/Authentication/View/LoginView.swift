@@ -17,7 +17,6 @@ struct LoginView:  View {
         let frameSize : CGFloat = horizontalSizeClass == .regular ? 50 : 30
         let imageFrameSize : CGFloat = horizontalSizeClass == .regular ? 200 : 150
         NavigationStack{
-            ScrollView {
                 VStack{
                     Spacer()
                     VStack {
@@ -93,7 +92,7 @@ struct LoginView:  View {
             }
       }
     }
-}
+
 #Preview{
     LoginView()
 }

@@ -5,7 +5,6 @@
 //  Created by seemakus on 4/15/26.
 //
 
-import Foundation
 import SwiftUI
 
 struct AuthFieldStyle: ViewModifier {

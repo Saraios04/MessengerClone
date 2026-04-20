@@ -5,7 +5,6 @@
 //  Created by seemakus on 4/16/26.
 //
 
-import Foundation
 import SwiftUI
 
 enum AppImageSource {

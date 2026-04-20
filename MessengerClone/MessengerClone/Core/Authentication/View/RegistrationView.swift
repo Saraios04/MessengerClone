@@ -5,7 +5,6 @@
 //  Created by seemakus on 4/16/26.
 //
 
-import Foundation
 import SwiftUI
 
 struct RegistrationView: View {
@@ -19,8 +18,7 @@ struct RegistrationView: View {
     var body: some View {
        
         var imageFrameSize : CGFloat = horizontalSizeClass == .regular ? 200 : 150
-        
-        ScrollView {
+
             VStack(spacing: 12){
                 Spacer()
                 AppImageView(imageSource: .asset("spesh_talent_logo"),imageWidth: imageFrameSize, imageHeight: imageFrameSize, contentMode: .fit)
@@ -48,7 +46,7 @@ struct RegistrationView: View {
         }
         }
         
-}
+
 
 
 #Preview{
