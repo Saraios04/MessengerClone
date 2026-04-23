@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InboxView : View {
+    @State var presentNewMessageView : Bool = false
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -28,18 +29,25 @@ struct InboxView : View {
                             })
                         }
                 }.listStyle(.plain)
-                    
-            }
+            }.fullScreenCover(isPresented: $presentNewMessageView, content: {
+                NewMessageView()
+            } )
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    ZStack(alignment: .center){
-                        Circle()
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 26,height: 26)
-                        Image(systemName: "square.and.pencil")
-                            .font(.system(size: 10, weight : .bold))
-                        
-                    }
+                    Button (action : {
+                        presentNewMessageView.toggle()
+                    },
+                        label : {
+                        ZStack(alignment: .center){
+                            Circle()
+                                .fill(Color.gray.opacity(0.2))
+                                .frame(width: 26,height: 26)
+                            Image(systemName: "square.and.pencil")
+                                .font(.system(size: 10, weight : .bold))
+                                .foregroundColor(.black)
+                            
+                        }
+                    })
                 }
                 ToolbarItem(placement: .navigationBarLeading){
                     HStack {

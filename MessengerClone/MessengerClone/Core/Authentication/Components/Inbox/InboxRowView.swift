@@ -7,6 +7,7 @@
 
 import SwiftUI
 struct InboxRowView: View {
+    
     var body : some View {
         HStack(spacing: 12) {
             AppImageView(imageSource: .systemImage("person.circle.fill"), imageWidth: 50, imageHeight: 50)
