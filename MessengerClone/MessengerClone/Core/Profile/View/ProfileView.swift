@@ -6,30 +6,36 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileView: View {
+    
+    @StateObject var profileVM = ProfileViewModel()
+    let profileUser: User
+    
     var body: some View {
-        NavigationStack {
             VStack {
                 VStack(spacing: 15) {
-                   
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 60, height: 60)
-                        
-                        .clipShape(Circle())
-                        .overlay(alignment: .bottomTrailing) {
-                            Circle()
-                                .frame(width: 30,height:10)
-                                .foregroundColor(Color.green)
-                                .overlay{
-                                    Circle()
-                                        .stroke(Color.white, lineWidth: 2)
-                                }
-                        }
+                    PhotosPicker(selection: $profileVM.selectedItem){
+                        if let profileImage = profileVM.profileImage {
+                            profileImage
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
                             
-                    Text("Username")
+                        } else {
+                            AppImageView(
+                                imageSource: .asset(profileUser.profileImageUrl ?? ""),
+                                imageWidth : 60,
+                                imageHeight: 60,
+                                contentMode: .fill
+                            ).clipShape(Circle())
+                        }
+                     
+                    }
+                            
+                    Text(profileUser.fullName)
                         .fontWeight(.bold)
                         .font(.subheadline)
                     
@@ -60,8 +66,8 @@ struct ProfileView: View {
             }
         }
     }
-}
+
 
 #Preview{
-    ProfileView()
+    ProfileView(profileUser: User.MOCK_User)
 }

@@ -11,7 +11,9 @@ import SwiftUI
 struct MessengerCloneApp: App {
     var body: some Scene {
         WindowGroup {
-            ProfileView()
+            ChatMessageCell(isFromCurrentUser: false)
+            //InboxView()
+           // ProfileView(profileUser: User.MOCK_User)
             //LoginView()
            // ActiveUsersView()
         }
