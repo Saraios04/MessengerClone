@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct LoginView:  View {
-    
-    @State private var email: String = ""
-    @State private var password: String = ""
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.dismiss) private var dismiss
+    @StateObject var loginVM  = LoginViewModel()
     
     var body: some View {
         let frameSize : CGFloat = horizontalSizeClass == .regular ? 50 : 30
@@ -22,10 +21,10 @@ struct LoginView:  View {
                     VStack {
                         VStack(spacing: 12) {
                             AppImageView(imageSource:.asset("spesh_talent_logo"),imageWidth: imageFrameSize, imageHeight: imageFrameSize,contentMode: .fit)
-                            AuthTextField(title: "Enter your email", textInput: $email, uiKeyBoard: .emailAddress)
+                            AuthTextField(title: "Enter your email", textInput: $loginVM.email, uiKeyBoard: .emailAddress)
                             AuthSecureField(
                                 title: "Enter your password",
-                                password: $password)
+                                password: $loginVM.password)
                         }
                         
                         HStack {
@@ -41,7 +40,9 @@ struct LoginView:  View {
                         
                         AuthButton(title: "Login",
                                    action: {
-                            print("Login Pressed")
+                            Task {
+                               await loginVM.login()
+                            }
                         })
                         
                         HStack {

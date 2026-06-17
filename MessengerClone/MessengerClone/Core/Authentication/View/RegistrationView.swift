@@ -14,6 +14,7 @@ struct RegistrationView: View {
     @State private var password: String = ""
     @Environment(\.dismiss) var dismiss
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @StateObject var registrationVM = RegistrationViewModel()
     
     var body: some View {
        
@@ -22,11 +23,14 @@ struct RegistrationView: View {
             VStack(spacing: 12){
                 Spacer()
                 AppImageView(imageSource: .asset("spesh_talent_logo"),imageWidth: imageFrameSize, imageHeight: imageFrameSize, contentMode: .fit)
-                AuthTextField(title: "Enter your email",textInput: $email)
-                AuthTextField(title: "Enter your full name", textInput: $fullName)
-                AuthSecureField(title: "Enter your password", password: $password )
+                AuthTextField(title: "Enter your email",textInput: $registrationVM.email)
+                //AuthTextField(title: "Enter your full name", textInput: $registrationVM.fullName)
+                AuthSecureField(title: "Enter your password", password: $registrationVM.password )
                 AuthButton(title: "Sign Up") {
-                    print("Sign up")
+                    Task {
+                       await registrationVM.registration()
+                    }
+                    
                 }
                 
                 Spacer()

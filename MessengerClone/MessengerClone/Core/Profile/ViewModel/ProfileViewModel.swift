@@ -30,7 +30,13 @@ class ProfileViewModel: ObservableObject {
         self.profileImage = Image(uiImage: uiImage)
         
     }
-
+    func logOut()  {
+        do {
+            try AuthService.shared.signOut()
+        } catch {
+            print("Debug: Failed to logout the user with error \(error.localizedDescription)")
+        }
+    }
 }
 #Preview {
     ProfileView(profileUser: User.MOCK_User)

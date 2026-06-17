@@ -54,7 +54,12 @@ struct ProfileView: View {
                         
                         Section {
                             VStack(alignment: .leading) {
-                                Text("Log Out")
+                                Button("LogOut"){
+                                 let task = Task {
+                                await profileVM.logOut()
+                                    }
+                                    
+                                }
                                 Divider()
                                 Text("Delete Account")
                             }.font(.callout)
