@@ -14,6 +14,8 @@
 		0506439D2FDE704B00A9F599 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0506439C2FDE704B00A9F599 /* FirebaseAnalyticsIdentitySupport */; };
 		0509B9312FDF36FC0013F3FF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0509B9302FDF36FC0013F3FF /* FirebaseAuth */; };
 		0509B9332FDF36FC0013F3FF /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0509B9322FDF36FC0013F3FF /* FirebaseAuthCombine-Community */; };
+		054C83DD2FE35B3E0084B155 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 054C83DC2FE35B3E0084B155 /* FirebaseFirestore */; };
+		054C83DF2FE35B3E0084B155 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 054C83DE2FE35B3E0084B155 /* FirebaseFirestoreCombine-Community */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +38,10 @@
 				050643972FDE704B00A9F599 /* FirebaseAILogic in Frameworks */,
 				0509B9312FDF36FC0013F3FF /* FirebaseAuth in Frameworks */,
 				0506439D2FDE704B00A9F599 /* FirebaseAnalyticsIdentitySupport in Frameworks */,
+				054C83DF2FE35B3E0084B155 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				050643952FDE704B00A9F599 /* FirebaseAI in Frameworks */,
 				050643992FDE704B00A9F599 /* FirebaseAnalytics in Frameworks */,
+				054C83DD2FE35B3E0084B155 /* FirebaseFirestore in Frameworks */,
 				0509B9332FDF36FC0013F3FF /* FirebaseAuthCombine-Community in Frameworks */,
 				0506439B2FDE704B00A9F599 /* FirebaseAnalyticsCore in Frameworks */,
 			);
@@ -97,6 +101,8 @@
 				0506439C2FDE704B00A9F599 /* FirebaseAnalyticsIdentitySupport */,
 				0509B9302FDF36FC0013F3FF /* FirebaseAuth */,
 				0509B9322FDF36FC0013F3FF /* FirebaseAuthCombine-Community */,
+				054C83DC2FE35B3E0084B155 /* FirebaseFirestore */,
+				054C83DE2FE35B3E0084B155 /* FirebaseFirestoreCombine-Community */,
 			);
 			productName = MessengerClone;
 			productReference = 05C6171A2F88457600023C13 /* MessengerClone.app */;
@@ -406,6 +412,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 050643932FDE704B00A9F599 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseAuthCombine-Community";
+		};
+		054C83DC2FE35B3E0084B155 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 050643932FDE704B00A9F599 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		054C83DE2FE35B3E0084B155 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 050643932FDE704B00A9F599 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -12,6 +12,8 @@ class RegistrationViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var email  = ""
     @Published var password = ""
+    @Published var fullname = ""
+    
     
     
    
@@ -19,7 +21,7 @@ class RegistrationViewModel: ObservableObject {
    @MainActor
     func registration() async {
             do {
-                try await AuthService.shared.createUser(withEmail: email, password: password)
+                try await AuthService.shared.createUser(withEmail: email, password: password, fullname: fullname)
             } catch {
                 self.errorMessage = "failed creating the userName"
             }

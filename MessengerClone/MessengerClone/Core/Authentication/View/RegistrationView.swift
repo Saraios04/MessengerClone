@@ -24,8 +24,9 @@ struct RegistrationView: View {
                 Spacer()
                 AppImageView(imageSource: .asset("spesh_talent_logo"),imageWidth: imageFrameSize, imageHeight: imageFrameSize, contentMode: .fit)
                 AuthTextField(title: "Enter your email",textInput: $registrationVM.email)
-                //AuthTextField(title: "Enter your full name", textInput: $registrationVM.fullName)
+                AuthTextField(title: "Enter your full name", textInput: $registrationVM.fullname)
                 AuthSecureField(title: "Enter your password", password: $registrationVM.password )
+                
                 AuthButton(title: "Sign Up") {
                     Task {
                        await registrationVM.registration()
