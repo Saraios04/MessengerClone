@@ -11,7 +11,7 @@ import PhotosUI
 struct ProfileView: View {
     
     @StateObject var profileVM = ProfileViewModel()
-    let profileUser: User
+    let profileUser: User?
     
     var body: some View {
             VStack {
@@ -26,7 +26,10 @@ struct ProfileView: View {
                             
                         } else {
                             AppImageView(
-                                imageSource: .asset(profileUser.profileImageUrl ?? ""),
+                                imageSource: 
+                                        .asset(
+                                            profileUser?.profileImageUrl ?? ""
+                                        ),
                                 imageWidth : 60,
                                 imageHeight: 60,
                                 contentMode: .fill
@@ -35,7 +38,7 @@ struct ProfileView: View {
                      
                     }
                             
-                    Text(profileUser.fullName)
+                    Text(profileUser?.fullName ?? "test")
                         .fontWeight(.bold)
                         .font(.subheadline)
                     

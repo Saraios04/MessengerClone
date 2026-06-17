@@ -27,12 +27,16 @@ class AuthService: ObservableObject {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
         self.userSession = result.user
         print("Debug: login user \(result.user)")
+        try await UserService.shared.fetchCurrentUser()
+        
     }
     
     func createUser (withEmail email: String, password: String,fullname: String) async throws {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
         self.userSession = result.user
         try await uploadUserData(email:email,fullname:fullname, id: result.user.uid)
+        try await UserService.shared.fetchCurrentUser()
+        
         print("Debug: create user \(result.user)")
     }
     

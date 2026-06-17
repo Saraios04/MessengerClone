@@ -9,7 +9,8 @@ import SwiftUI
 
 struct InboxView : View {
     @State var presentNewMessageView : Bool = false
-    @State private var user = User.MOCK_User
+    
+    let userService = UserService.shared
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -31,9 +32,9 @@ struct InboxView : View {
                         }
                 }.listStyle(.plain)
             }.navigationDestination(for: User.self, destination: { user in
-                ProfileView(profileUser: user)
-                
-            })
+    ProfileView(
+        profileUser: UserService.shared.currentUser)
+})
             
             .fullScreenCover(isPresented: $presentNewMessageView, content: {
                 NewMessageView()
@@ -57,15 +58,29 @@ struct InboxView : View {
                 }
                 ToolbarItem(placement: .navigationBarLeading){
                     HStack {
-                        NavigationLink(value: user) {
-                            AppImageView(
-                                imageSource: .asset(user.profileImageUrl ?? ""),
+                        NavigationLink(value:  userService.currentUser) {
+                            if let profileImageUrl = userService.currentUser?.profileImageUrl{
+                                AppImageView(
+                                    imageSource:
+                                            .asset(
+                                                profileImageUrl
+                                            ),
+                                    imageWidth : 30,
+                                    imageHeight: 30,
+                                    contentMode: .fill
+                                ).clipShape(Circle())
+                            } else {
+                                AppImageView(
+                                imageSource:
+                                        .systemImage("person.crop.circle"),
                                 imageWidth : 30,
                                 imageHeight: 30,
                                 contentMode: .fill
-                            ).clipShape(Circle())
+                            ).foregroundStyle(Color.black)
+                             .clipShape(Circle())
+                                
+                            }
                         }
-               
                         Text("Chats")
                             .fontWeight(.bold)
                             .font(.system(size: 20))
