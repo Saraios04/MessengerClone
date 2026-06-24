@@ -24,18 +24,24 @@ struct ProfileView: View {
                                 .frame(width: 80, height: 80)
                                 .clipShape(Circle())
                             
-                        } else {
+                        } else if let profileImageUrl = profileUser?.profileImageUrl, !profileImageUrl.isEmpty {
                             AppImageView(
-                                imageSource: 
-                                        .asset(
-                                            profileUser?.profileImageUrl ?? ""
-                                        ),
-                                imageWidth : 60,
+                                imageSource: .asset(profileImageUrl),
+                                imageWidth: 60,
                                 imageHeight: 60,
                                 contentMode: .fill
-                            ).clipShape(Circle())
+                            )
+                            .clipShape(Circle())
+                        } else {
+                            AppImageView(
+                                imageSource: .systemImage("person.crop.circle"),
+                                imageWidth: 60,
+                                imageHeight: 60,
+                                contentMode: .fill
+                            )
+                            .foregroundStyle(.black)
+                            .clipShape(Circle())
                         }
-                     
                     }
                             
                     Text(profileUser?.fullName ?? "test")
