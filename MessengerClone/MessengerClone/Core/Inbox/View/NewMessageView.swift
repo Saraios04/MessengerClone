@@ -11,6 +11,7 @@ struct NewMessageView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State var profileName : String = ""
+    @State var newMessageVM : NewMessageViewModel = NewMessageViewModel()
     
     var body: some View {
         NavigationStack {
@@ -26,12 +27,12 @@ struct NewMessageView: View {
                         .foregroundColor(Color.gray)
                     
                        ScrollView {
-                        ForEach(0..<10) {_ in
+                           ForEach(newMessageVM.users) { user in
                             
                             HStack( spacing: 20 ) {
                                 AppImageView(imageSource: .systemImage("person.circle.fill"), imageWidth : 40, imageHeight: 40, contentMode: .fit)
                                 VStack(alignment: .leading) {
-                                    Text("Username")
+                                    Text(user.fullName)
                                     Divider()
                                 }
                                 Spacer()
@@ -57,6 +58,8 @@ struct NewMessageView: View {
                 }
                
             }
+        }.task {
+            await newMessageVM.fetchAllUsers()
         }
     }
 }

@@ -43,6 +43,7 @@ class AuthService: ObservableObject {
     func signOut() throws {
         try Auth.auth().signOut()
         self.userSession = nil
+        UserService.shared.currentUser = nil
     }
     
     private func uploadUserData(email: String, fullname: String, id: String) async throws {
