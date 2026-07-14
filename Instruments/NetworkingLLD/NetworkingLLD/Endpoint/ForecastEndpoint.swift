@@ -1,5 +1,5 @@
 //
-//  WeatherEndpoint.swift
+//  ForecastEndpoint.swift
 //  NetworkingLLD
 //
 //  Created by seemakus on 7/12/26.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum WeatherEndpoint {
+enum ForecastEndpoint {
     
     case current(city: String)
-    case forecast(latitude: String, longitude: String, current: String)
+    case forecast(latitude: String, longitude: String)
     
     var path : String {
         
@@ -28,10 +28,10 @@ enum WeatherEndpoint {
             case .current(let city):
                 return [URLQueryItem(name:"city", value: city)]
                 
-            case .forecast(let latitude,let longitude, let current):
+            case .forecast(let latitude,let longitude):
                 return [URLQueryItem(name:"latitude", value: latitude),
                         URLQueryItem(name:"longitude", value: longitude),
-                        URLQueryItem(name:"current", value: current)]
+                        URLQueryItem(name:"current", value: "temperature_2m,relative_humidity_2m,wind_speed_10m")]
         }
     }
     var httpMethod : String {
